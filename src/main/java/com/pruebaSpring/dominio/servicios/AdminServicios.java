@@ -1,5 +1,10 @@
 package com.pruebaSpring.dominio.servicios;
 
-public interface AdminServicios {
+import com.pruebaSpring.dominio.entidades.Producto;
 
+public interface AdminServicios extends UsuarioServicios {
+	
+	Producto save(Producto producto);
+	Producto update(Producto objet);
+	void delete(Long id);
 }
