@@ -35,7 +35,7 @@ import lombok.NoArgsConstructor;
 public class Producto {
 	
 	@Id
-	@Column(name="id_productos")
+	@Column(name="id_producto")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idProducto;
 	
@@ -76,7 +76,7 @@ public class Producto {
 	
 	
 	// Lista de compras en la que aparece determinado producto !!! La necesito???
-//	@OneToMany(mappedBy="compra")
+//	@OneToMany(mappedBy="productos")
 //	private List<ComprasProducto> compras;
 	
 	

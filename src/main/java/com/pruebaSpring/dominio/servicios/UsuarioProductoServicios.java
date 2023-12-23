@@ -7,21 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pruebaSpring.datos.ProductoRepository;
-import com.pruebaSpring.datos.UsuarioRepository;
 import com.pruebaSpring.dominio.entidades.Producto;
 import com.pruebaSpring.dominio.entidades.Usuario;
 
-import lombok.extern.java.Log;
-
-@Log
 @Service
 public class UsuarioProductoServicios implements UsuarioServicios{
 
 	@Autowired
 	ProductoRepository productoRepository;
-	
-	@Autowired
-	UsuarioRepository usuarioRepository;
 	
 	public List<Producto> getAllProductos(){
 		return (List<Producto>) productoRepository.findAll();
@@ -49,16 +42,6 @@ public class UsuarioProductoServicios implements UsuarioServicios{
 	
 	@Override
 	public Usuario login(String email, String password) {
-		
-		Usuario usuario = usuarioRepository.findByEmail(email);
-		
-		if(usuario != null && usuario.getPassword().equals(password)) {
-			log.fine(String.format("El usuario %s se ha logueado", email));
-			return usuario;
-		}
-		
-		log.warning(String.format("El usuario %s con la contraseña %s no es válido", email, password));
-		
-		return null;
+		throw new ServiciosException("NO IMPLEMENTADO");
 	}
 }
