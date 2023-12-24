@@ -3,6 +3,7 @@ package com.pruebaSpring.dominio.servicios;
 import java.util.List;
 import java.util.Optional;
 
+import com.pruebaSpring.dominio.entidades.Categoria;
 import com.pruebaSpring.dominio.entidades.Producto;
 import com.pruebaSpring.dominio.entidades.Usuario;
 
@@ -19,5 +20,7 @@ public interface UsuarioServicios {
 	Optional<List<Producto>> getProductoByPartialName(String name);
 	
 	Usuario login(String email, String password);
+	
+	List<Categoria> getAllCategorias();
 	
 }

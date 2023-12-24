@@ -4,17 +4,24 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
+import com.pruebaSpring.datos.CategoriaRepository;
 import com.pruebaSpring.datos.ProductoRepository;
+import com.pruebaSpring.dominio.entidades.Categoria;
 import com.pruebaSpring.dominio.entidades.Producto;
 import com.pruebaSpring.dominio.entidades.Usuario;
 
-@Service
+@Component
+@Primary
 public class UsuarioProductoServicios implements UsuarioServicios{
 
 	@Autowired
 	ProductoRepository productoRepository;
+	
+	@Autowired
+	CategoriaRepository categoriaRepository;
 	
 	public List<Producto> getAllProductos(){
 		return (List<Producto>) productoRepository.findAll();
@@ -43,5 +50,10 @@ public class UsuarioProductoServicios implements UsuarioServicios{
 	@Override
 	public Usuario login(String email, String password) {
 		throw new ServiciosException("NO IMPLEMENTADO");
+	}
+
+	@Override
+	public List<Categoria> getAllCategorias() {
+		return (List<Categoria>) categoriaRepository.findAll();
 	}
 }

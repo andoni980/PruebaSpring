@@ -1,12 +1,12 @@
 package com.pruebaSpring.dominio.servicios;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.pruebaSpring.datos.ProductoRepository;
 import com.pruebaSpring.dominio.entidades.Producto;
 
-@Service
+@Component
 public class AdminProductoServicios extends UsuarioProductoServicios implements AdminServicios {
 	
 	@Autowired

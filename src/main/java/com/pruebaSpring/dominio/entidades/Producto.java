@@ -70,9 +70,9 @@ public class Producto {
 	@Future
 	private LocalDate fechaCaducidad;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_categoria", insertable = false, updatable = false)
-	private Categoria categoria;
+//	@ManyToOne
+//	@JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+//	private Categoria categoria;
 	
 	
 	// Lista de compras en la que aparece determinado producto !!! La necesito???
