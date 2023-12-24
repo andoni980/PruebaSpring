@@ -31,6 +31,10 @@ public class IndexController {
 		return "indexPorCategorias";
 	}
 	
-	
+	@GetMapping("/producto/{id}")
+	public String producto(Model modelo, @PathVariable Long id) {
+		modelo.addAttribute("producto", usuarioServicios.getProductoById(id).get());
+		return "producto";
+	}
 
 }
