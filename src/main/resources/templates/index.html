@@ -8,7 +8,9 @@
 
 <body>
 
-	<main class="container-fluid">
+	<main>
+
+	<div class="mx-5">
 		<!--		<pre th:text="${productos}">Visualización de productos</pre>-->
 
 		<!-- Button trigger modal -->
@@ -47,36 +49,56 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4">
-			<div th:each="p: ${productos}" class="col">
-				<div class="card h-100">
-					<img th:src="|https://picsum.photos/400/300?${p.idProducto}|" src="https://picsum.photos/400/300"
-						class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 th:text="${p.nombre}" class="card-title">Producto</h5>
+		
+		
+		
+		<div class="card mb-3" th:each="producto: ${productos}">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img th:src="|https://picsum.photos/400/300?${producto.idProducto}|" src="..."
+						class="img-fluid rounded-start" alt="...">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body" >
+						<h5 th:text="${producto.nombre}" class="card-title">Producto</h5>
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Fecha de caducidad:</span>
+								<span th:text="${#temporals.format(producto.fechaCaducidad)}">12 de Diciembre de
+									2023</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
 								<span class="fw-bold">Precio:</span>
-								<span th:text="${#numbers.formatCurrency(p.precio)}">1234,12€</span>
+								<span th:text="${#numbers.formatCurrency(producto.precio)}">1234,12€</span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="fw-bold">Unidades:</span>
-								<span th:text="|${p.stock} unid|">5</span>
+								<span th:text="|${producto.stock} u|">5</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">EAN:</span>
+								<span th:text="${producto.codigoBarras}">123456789012</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<a class="btn btn-primary fs-5" th:href="@{/carrito(idProducto=${producto.idProducto})}"
+								href="carrito.html">Agregar a carrito <i class="bi bi-bag-plus-fill"></i></a>
+								<a class="btn btn-secondary fs-5" th:href="@{/producto/{id}(id=${producto.idProducto})}"
+								href="producto.html"><i class="bi bi-search"></i></a>
 							</li>
 						</ul>
-
 					</div>
+
 					<div class="card-footer">
 						<div class="text-center">
-							<a class="btn btn-primary fs-5" th:href="@{/carrito(idProducto=${p.idProducto})}"
+		<!--					<a class="btn btn-primary fs-5" th:href="@{/carrito(idProducto=${producto.idProducto})}"
 								href="carrito.html"><i class="bi bi-bag-plus-fill"></i></a>
-							<a class="btn btn-secondary fs-5" th:href="@{/producto/{id}(id=${p.idProducto})}"
-								href="producto.html"><i class="bi bi-search"></i></a>
+							<a class="btn btn-secondary fs-5" th:href="@{/producto/{id}(id=${producto.idProducto})}"
+								href="producto.html"><i class="bi bi-search"></i></a-->
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</main>
 
