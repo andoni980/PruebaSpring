@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pruebaSpring.bibliotecas.Alerta;
 import com.pruebaSpring.dominio.servicios.UsuarioServicios;
 
 @Controller
@@ -39,20 +40,19 @@ public class IndexController {
 	
 	@GetMapping("/login")
 	public String login(String error, String logout, String noautorizado, String interactivo, Model modelo) {
-//		Alerta alerta = new Alerta(modelo);
+		Alerta alerta = new Alerta(modelo);
 
-//		if (error != null) {
-//			alerta.danger("El usuario o la contraseña no son correctos");
-//		} else if (logout != null) {
-//			alerta.success("Se ha desconectado de la sesión correctamente");
-//		} else if(noautorizado != null) {
-//			alerta.danger("Tu nivel de acceso no es suficiente");
-//		} else if(interactivo != null) {
-//		} else {
-//			alerta.warning("Tienes que iniciar sesión");
-//		}
+		if (error != null) {
+			alerta.danger("El usuario o la contraseña no son correctos");
+		} else if (logout != null) {
+			alerta.success("Se ha desconectado de la sesión correctamente");
+		} else if(noautorizado != null) {
+			alerta.danger("Tu nivel de acceso no es suficiente");
+		} else if(interactivo != null) {
+		} else {
+			alerta.warning("Tienes que iniciar sesión");
+		}
 
 		return "login";
 	}
-
 }

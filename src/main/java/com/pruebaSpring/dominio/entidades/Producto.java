@@ -68,6 +68,10 @@ public class Producto {
 	@Future
 	private LocalDate fechaCaducidad;
 	
+	public BigDecimal getTotal() {
+		return precio.multiply(new BigDecimal(stock));
+	}
+	
 //	@ManyToOne
 //	@JoinColumn(name = "id_categoria", insertable = false, updatable = false)
 //	private Categoria categoria;

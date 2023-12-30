@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,7 +17,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(12);
 	}
@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception{
 		
-		auth.jdbcAuthentication().dataSource(dataSource)
+		auth.jdbcAuthentication().passwordEncoder(passwordEncoder()).dataSource(dataSource)
 			.usersByUsernameQuery("""
 					SELECT email, password, 1
 					FROM usuarios
@@ -53,8 +53,23 @@ public class WebSecurityConfig {
 					.loginPage("/login")
 					.permitAll()
 				)
-			.logout(logout -> logout.permitAll());
+			.logout(LogoutConfigurer::permitAll);
 		
 		return httpSecurity.build();
 	}
+	
+	//	AUTENTICACIÓN DE MYSQL
+	//	----------------------
+	//	create table users(
+	//		username varchar(50) not null primary key,
+	//		password varchar(500) not null,
+	//		enabled boolean not null
+	//	);
+	//
+	//	create table authorities (
+	//		username varchar(50) not null,
+	//		authority varchar(50) not null,
+	//		constraint fk_authorities_users foreign key(username) references users(username)
+	//	);
+	//	create unique index ix_auth_username on authorities (username,authority);
 }

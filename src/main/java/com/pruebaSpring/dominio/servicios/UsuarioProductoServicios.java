@@ -9,10 +9,14 @@ import org.springframework.stereotype.Component;
 
 import com.pruebaSpring.datos.CategoriaRepository;
 import com.pruebaSpring.datos.ProductoRepository;
+import com.pruebaSpring.dominio.entidades.Carrito;
 import com.pruebaSpring.dominio.entidades.Categoria;
 import com.pruebaSpring.dominio.entidades.Producto;
 import com.pruebaSpring.dominio.entidades.Usuario;
 
+import lombok.extern.java.Log;
+
+@Log
 @Component
 @Primary
 public class UsuarioProductoServicios implements UsuarioServicios{
@@ -55,5 +59,29 @@ public class UsuarioProductoServicios implements UsuarioServicios{
 	@Override
 	public List<Categoria> getAllCategorias() {
 		return (List<Categoria>) categoriaRepository.findAll();
+	}
+
+	@Override
+	public Carrito addProductoACarrito(Long id, Carrito carrito) {
+		Producto producto = getProductoById(id).get();
+		addProductoACarrito(producto, carrito);
+		return carrito;
+	}
+
+	@Override
+	public Carrito addProductoACarrito(Producto producto, Carrito carrito) {
+		
+		Producto existente = carrito.getProducto(producto.getIdProducto());
+
+		if(existente == null) {
+			producto.setStock(1);
+			carrito.addProducto(producto);
+		}else {
+			existente.setStock(existente.getStock() + 1);
+		}
+		
+		log.info("Se ha agregado el producto" + producto + " a tu carrito");
+		
+		return carrito;
 	}
 }
