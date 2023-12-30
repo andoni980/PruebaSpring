@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{_plantilla_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -11,10 +11,18 @@
 	<main class="container">
 		<form action="index.html" th:action="@{/admin}" th:object="${producto}" method="post">
 			<div class="row mb-2">
-				<label class="col-sm-2 col-form-label" for="id">Id</label>
+				<label class="col-sm-2 col-form-label" for="idProducto">Id</label>
 				<div class="col-sm">
-					<input class="form-control" th:classappend="${#fields.hasErrors('id')} ? 'is-invalid'" th:field="*{id}" placeholder="Id">
-					<div class="invalid-feedback" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+					<input class="form-control" th:classappend="${#fields.hasErrors('idProducto')} ? 'is-invalid'" th:field="*{idProducto}" placeholder="Id">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('idProducto')}" th:errors="*{idProducto}"></div>
+				</div>
+			</div>
+			
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label" for="idCategoria">Id Categoria</label>
+				<div class="col-sm">
+					<input class="form-control" th:classappend="${#fields.hasErrors('idCategoria')} ? 'is-invalid'" th:field="*{idCategoria}" placeholder="Id Categoria">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('idCategoria')}" th:errors="*{idCategoria}"></div>
 				</div>
 			</div>
 
@@ -51,10 +59,18 @@
 			</div>
 
 			<div class="row mb-2">
-				<label class="col-sm-2 col-form-label" for="unidades">Unidades</label>
+				<label class="col-sm-2 col-form-label" for="stock">Unidades</label>
 				<div class="col-sm">
-					<input class="form-control" type="number" th:classappend="${#fields.hasErrors('unidades')} ? 'is-invalid'" th:field="*{unidades}" placeholder="Unidades">
-					<div class="invalid-feedback" th:if="${#fields.hasErrors('unidades')}" th:errors="*{unidades}"></div>
+					<input class="form-control" type="number" th:classappend="${#fields.hasErrors('stock')} ? 'is-invalid'" th:field="*{stock}" placeholder="Unidades">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></div>
+				</div>
+			</div>
+			
+			<div class="row mb-2">
+				<label class="col-sm-2 col-form-label" for="estado">Estado</label>
+				<div class="col-sm">
+					<input class="form-checbox" type="checkbox" checked th:classappend="${#fields.hasErrors('estado')} ? 'is-invalid'" th:field="*{estado}" placeholder="estado">
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
 				</div>
 			</div>
 

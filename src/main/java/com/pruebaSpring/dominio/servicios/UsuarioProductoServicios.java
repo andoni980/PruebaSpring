@@ -21,8 +21,11 @@ import lombok.extern.java.Log;
 @Primary
 public class UsuarioProductoServicios implements UsuarioServicios{
 
-	@Autowired
-	ProductoRepository productoRepository;
+	protected ProductoRepository productoRepository;
+	
+	public UsuarioProductoServicios(ProductoRepository productoRepository) {
+		this.productoRepository = productoRepository;
+	}
 	
 	@Autowired
 	CategoriaRepository categoriaRepository;

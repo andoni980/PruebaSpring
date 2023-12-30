@@ -30,7 +30,7 @@ public interface ProductoRepository extends CrudRepository<Producto, Long>, Pagi
 	
 	Optional<Iterable<Producto>> findByStockLessThanAndEstado(int stock, boolean estado);
 	
-	@Query(nativeQuery = true,value = "UPDATE productos SET nombre=?,WHERE id_categoria = ? ORDER BY nombre ASC")
-	Boolean updateProducto(Long id, Producto producto);
+//	@Query(nativeQuery = true,value = "UPDATE productos SET nombre=?,WHERE id_categoria = ? ORDER BY nombre ASC")
+//	Boolean updateProducto(Long id, Producto producto);
 
 }

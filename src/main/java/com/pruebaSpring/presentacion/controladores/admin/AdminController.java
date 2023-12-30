@@ -37,7 +37,7 @@ public class AdminController {
 	@GetMapping("/producto")
 	public String producto(Model modelo, Long id, Producto producto) {
 		if(id != null) {
-			modelo.addAttribute("producto", adminServicios.getProductoById(id));
+			modelo.addAttribute("producto", adminServicios.getProductoById(id).get());
 		}
 		return "admin/producto";
 	}
